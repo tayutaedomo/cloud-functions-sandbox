@@ -13,6 +13,12 @@ $ pip install -r requirements.txt
 ```
 
 
+## Local Development
+```
+$ functions-framework --target hello_get --debug
+```
+
+
 ## Cloud Functions
 ```
 $ gcloud functions deploy hello_get --runtime python37 --trigger-http --allow-unauthenticated

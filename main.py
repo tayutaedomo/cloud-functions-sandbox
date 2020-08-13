@@ -43,20 +43,24 @@ def parse_multipart(request):
         print('Processed field: %s' % field)
 
     # This code will process each file uploaded
+    size = 0
     files = request.files.to_dict()
     for file_name, file in files.items():
         # Note: GCF may not keep files saved locally between invocations.
         # If you want to preserve the uploaded files, you should save them
         # to another location (such as a Cloud Storage bucket).
-        file.save(get_file_path(file_name))
-        print('Processed file: %s' % file_name)
+        #file.save(get_file_path(file_name))
+        #print('Processed file: %s' % file_name)
+        size = len(file.read())
+        print('Processed file size: %s' % size)
 
     # Clear temporary directory
-    for file_name in files:
-        file_path = get_file_path(file_name)
-        os.remove(file_path)
+    #for file_name in files:
+    #    file_path = get_file_path(file_name)
+    #    os.remove(file_path)
 
-    return "Done!"
+    #return "Done!"
+    return "Done! size:%s" % size
 
 # Helper function that computes the filepath to save files to
 def get_file_path(filename):
